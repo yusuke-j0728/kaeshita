@@ -24,6 +24,11 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+const HDWalletProvider = require("truffle-hdwallet-provider");
+const mnemonic = "civil state magic distance diagram warfare paper file depth hurdle tribe screen";
+const accessToken = "v3/747a78347d9845209f0fbf6d6e263f2e";
+
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -60,6 +65,16 @@ module.exports = {
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
+    ropsten: {
+      provider: function() {
+        return new HDWalletProvider(
+          mnemonic,
+          "https://ropsten.infura.io/" + accessToken
+        );
+      },
+      network_id: 3,
+      gas: 500000
+    }
     // ropsten: {
       // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
       // network_id: 3,       // Ropsten's id
